@@ -3,12 +3,16 @@
 { config, pkgs, ... }:
 
 let
+  homeManager = builtins.fetchGit {
+    url = "https://github.com/rycee/home-manager";
+    ref = "release-18.09";
+  };
   isUefi = builtins.pathExists /sys/firmware/efi;
 in
 {
   imports =
     [ # Include the results of the hardware scan.
-      "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-18.09.tar.gz}/nixos"
+      "${homeManager}/nixos"
       ./hardware-configuration.nix
       ./hardware-specific-conf.nix
     ];
