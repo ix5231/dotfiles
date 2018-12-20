@@ -1,0 +1,127 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+alt + Return
+	termite
+
+alt + z
+	termite
+
+# program launcher
+alt + d
+	rofi -show run
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+alt + b
+	firefox
+
+#
+# bspwm hotkeys
+#
+
+# quit bspwm normally
+super + shift + e
+	bspc quit
+
+# close and kill
+alt + {_,shift + }q
+	bspc node -{c,k}
+
+alt + button2
+	bspc node pointed -c
+
+# alternate between the tiled and monocle layout
+alt + m
+	bspc desktop -l next
+
+alt + button9
+	bspc desktop -l next
+
+# swap the current node and the biggest node
+alt + g
+	bspc node -s biggest
+
+alt + button8
+	bspc node pointed -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+alt + {t,shift + t,r,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+alt + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus or send to the given desktop
+alt + {_,shift + }{1-9}
+	bspc {desktop -f,node -d} '^{1-9}'
+
+alt + {button4,button5}
+    bspc desktop -f {prev, next}.local
+
+#
+# preselect
+#
+
+# preselect the direction
+alt + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+alt + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+alt + ctrl + space
+	bspc node -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+alt + super + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+alt + super + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+#
+# menu
+#
+
+shift + button3
+    $HOME/bin/menu
+
+#
+# multimedia
+#
+
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+XF86AudioRaiseVolume
+    ponymix increase 5
+
+XF86AudioLowerVolume
+    ponymix decrease 5
+
+XF86AudioMute
+    ponymix toggle
