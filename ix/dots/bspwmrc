@@ -1,9 +1,6 @@
 #! /bin/sh
 
 sxhkd -c $HOME/.config/sxhkd/bspwm &
-#polybar bar&
-#compton&
-feh --bg-scale $HOME/Wallpapers/wall
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9
 

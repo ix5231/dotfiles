@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  imports = [ ./hardware-specific-conf.nix ];
+
   programs = {
     home-manager = {
         enable = true;
@@ -42,20 +44,8 @@
     };
   };
 
-  #systemd.user.services.onedrive = {
-  #  Unit = {
-  #    Description = "Onedrive";
-  #  };
-
-  #  Service = {
-  #    Restart = "on-failure";
-  #    RestartSec = 1;
-  #    ExecStart = "${pkgs.onedrive}/bin/onedrive --monitor";
-  #  };
-  #};
-
   home.packages = with pkgs; [
-    myNeovim git bspwm sxhkd firefox feh
+    myNeovim git bspwm sxhkd firefox
     ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
     wget texlive.combined.scheme-full xpdf
   ];
