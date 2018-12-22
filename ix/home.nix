@@ -61,5 +61,6 @@
       executable = true;
     };
     "sxhkd/bspwm".text = builtins.readFile ./dots/sxhkdrc;
+    "nixpkgs/config.nix".text = "{ allowUnfree = true; }";
   };
 }
