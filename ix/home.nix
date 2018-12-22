@@ -55,11 +55,11 @@
     sudo = "sudo -E";
   };
 
-  home.file = {
-    ".config/bspwm/bspwmrc" = {
+  xdg.configFile = {
+    "bspwm/bspwmrc" = {
       text = builtins.readFile ./dots/bspwmrc;
       executable = true;
     };
-    ".config/sxhkd/bspwm".text = builtins.readFile ./dots/sxhkdrc;
+    "sxhkd/bspwm".text = builtins.readFile ./dots/sxhkdrc;
   };
 }
