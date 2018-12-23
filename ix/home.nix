@@ -47,7 +47,7 @@
   home.packages = with pkgs; [
     myNeovim git bspwm sxhkd firefox
     ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
-    wget texlive.combined.scheme-full xpdf
+    wget texlive.combined.scheme-full xpdf shellcheck
   ];
   home.sessionVariables.EDITOR = "nvim";
   programs.zsh.shellAliases = {
