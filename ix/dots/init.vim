@@ -88,9 +88,13 @@ let g:airline_section_z = airline#section#create(["L" . '%{line(".")}' . "C" . '
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ }
+if executable('rls')
+    let g:LanguageClient_serverCommands['rust'] = ['rls']
+elseif executable('rustup')
+    let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'stable', 'rls']
+endif
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
