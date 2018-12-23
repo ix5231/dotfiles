@@ -26,6 +26,8 @@
     rofi.enable = true;
   };
 
+  services.dunst.enable = true;
+
   xsession = {
     enable = true;
     windowManager.command = "bspwm";
@@ -45,7 +47,7 @@
   };
 
   home.packages = with pkgs; [
-    myNeovim git bspwm sxhkd firefox
+    myNeovim git bspwm sxhkd firefox libnotify
     ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
     wget texlive.combined.scheme-full xpdf shellcheck
   ];
