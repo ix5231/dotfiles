@@ -41,7 +41,7 @@ in
   time.timeZone = "Asia/Tokyo";
   services.timesyncd.servers = [ "ntp.nict.jp" "ntp.jst.mfeed.ad.jp" "s2csntp.miz.nao.ac.jp" ];
 
-  environment.systemPackages = with pkgs; [ fcitx-engines.mozc gcc ];
+  environment.systemPackages = with pkgs; [ fcitx-engines.mozc numlockx ];
 
   # Enable sound.
   sound.enable = true;
@@ -54,6 +54,7 @@ in
     enable = true;
     user = "ix";
   };
+  services.xserver.displayManager.sessionCommands = "${pkgs.numlockx}/bin/numlockx on";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
