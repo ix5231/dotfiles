@@ -6,28 +6,30 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cohama/lexima.vim'
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'autozimu/LanguageClient-neovim', {
+    \ 'for': ['rust', 'typescript'] ,
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'w0rp/ale'
-Plug 'ncm2/ncm2'
+Plug 'w0rp/ale', { 'for': ['sh', 'c', 'cpp', 'ruby', 'python'] }
 Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'wakatime/vim-wakatime'
-Plug 'leafgarland/typescript-vim'
-Plug 'LnL7/vim-nix'
-Plug 'lervag/vimtex'
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'LnL7/vim-nix', {'for': 'nix'}
+Plug 'lervag/vimtex', {'for': 'tex'}
 call plug#end()
 
 colorscheme gruvbox
@@ -110,6 +112,14 @@ let g:ale_nasm_nasm_options = '-felf64'
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+inoremap <silent> <buffer> <expr> <tab> ncm2_ultisnips#expand_or("\<tab>", 'n')
+
+" c-j c-k for moving in snippet
+" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
