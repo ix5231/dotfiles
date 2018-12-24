@@ -22,6 +22,10 @@
         enable = true;
         theme = "arrow";
       };
+      shellAliases = {
+        ns = "nix-shell --command zsh";
+        sudo = "sudo -E";
+      };
     };
     rofi.enable = true;
   };
@@ -47,15 +51,11 @@
   };
 
   home.packages = with pkgs; [
-    myNeovim git bspwm sxhkd firefox libnotify
+    myNeovim git bspwm sxhkd firefox libnotify fzf llpp
     ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
-    wget texlive.combined.scheme-full xpdf shellcheck
+    wget texlive.combined.scheme-full shellcheck
   ];
   home.sessionVariables.EDITOR = "nvim";
-  programs.zsh.shellAliases = {
-    ns = "nix-shell --command zsh";
-    sudo = "sudo -E";
-  };
 
   xdg.configFile = {
     "bspwm/bspwmrc" = {
