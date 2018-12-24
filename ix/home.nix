@@ -64,4 +64,5 @@
     };
     "sxhkd/bspwm".text = builtins.readFile ./dots/sxhkdrc;
   };
+  home.file.".latexmkrc".source = ./dots/latexmkrc;
 }

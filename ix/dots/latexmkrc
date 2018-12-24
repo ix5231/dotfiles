@@ -1,0 +1,12 @@
+$latex = 'platex --kanji=jis -synctex=1 %O %S';
+$bibtex = 'pbibtex --kanji=jis %O %B';
+$dvipdf = 'dvipdfmx -f ptex-ipaex.map %O -o %D %S';
+$makeindex = 'mendex %O -o %D %S';
+$max_repeat = 10;
+$pdf_previewer = '
+    if [ -z "$(pgrep llpp)" ]; then
+        llpp %O %S
+    else
+        pkill -SIGHUP llpp
+    fi
+'
