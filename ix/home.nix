@@ -59,10 +59,10 @@
 
   xdg.configFile = {
     "bspwm/bspwmrc" = {
-      text = builtins.readFile ./dots/bspwmrc;
+      source = ./dots/bspwmrc;
       executable = true;
     };
-    "sxhkd/bspwm".text = builtins.readFile ./dots/sxhkdrc;
+    "sxhkd/bspwm".source = ./dots/sxhkdrc;
   };
   home.file.".latexmkrc".source = ./dots/latexmkrc;
 }
