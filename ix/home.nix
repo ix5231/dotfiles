@@ -30,32 +30,77 @@
     rofi.enable = true;
   };
 
-  services.dunst.enable = true;
+  services = {
+    dunst.enable = true;
+    compton = {
+      enable = true;
+      #blur = true;
+    };
+    polybar = {
+      enable = true;
+      config = {
+        "bar/bottom" = {
+          bottom = true;
+          width = "100%:-20";
+          height = 25;
+          offset-x = 10;
+          offset-y = 4;
+          tray-position = "right";
+          modules-center = "date battery";
+          module-margin = 1;
+          font-0 = "Source Han Code JP:weight=bold:size=12;3";
+          background = "#282828";
+          foreground = "#fbf1c7";
+          fixed-center = true;
+          border-size = 4;
+          border-color = "#689D6A";
+        };
+        "module/date" = {
+          type = "internal/date";
+          interval = 5;
+          date = "%Y-%m-%d";
+          time = "%H:%M";
+        };
+        "module/battery" = {
+          type = "internal/battery";
+          full-at = 98;
+          label-charging = "! %percentage%%";
+        };
+      };
+      script = "polybar bottom &";
+    };
+  };
 
   xsession = {
     enable = true;
     windowManager.command = "bspwm";
+    initExtra = "${./dots/battery_warn.sh} &";
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.packageOverrides = with pkgs; {
-    myNeovim = neovim.override {
-      configure = {
-        customRC = builtins.readFile ./dots/init.vim;
-        packages.myVimPackage = with pkgs.vimPlugins; {
-          start = [];
-          opt = [];
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = with pkgs; {
+      myNeovim = neovim.override {
+        configure = {
+          customRC = builtins.readFile ./dots/init.vim;
+          packages.myVimPackage = with pkgs.vimPlugins; {
+            start = [];
+            opt = [];
+          };
         };
       };
     };
   };
 
-  home.packages = with pkgs; [
-    myNeovim git bspwm sxhkd firefox libnotify fzf llpp
-    ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
-    wget texlive.combined.scheme-full shellcheck
-  ];
-  home.sessionVariables.EDITOR = "nvim";
+  home = {
+    packages = with pkgs; [
+      myNeovim git bspwm sxhkd firefox libnotify fzf llpp
+      ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
+      wget texlive.combined.scheme-full shellcheck
+    ];
+    sessionVariables.EDITOR = "nvim";
+    file.".latexmkrc".source = ./dots/latexmkrc;
+  };
 
   xdg.configFile = {
     "bspwm/bspwmrc" = {
@@ -65,5 +110,4 @@
     "sxhkd/bspwm".source = ./dots/sxhkdrc;
     "nixpkgs/config.nix".text = "{ allowUnfree = true; }";
   };
-  home.file.".latexmkrc".source = ./dots/latexmkrc;
 }
