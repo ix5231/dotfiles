@@ -74,6 +74,7 @@
   xsession = {
     enable = true;
     windowManager.command = "bspwm";
+    initExtra = "${./dots/battery_warn.sh} &";
   };
 
   nixpkgs.config = {
