@@ -57,9 +57,10 @@
         };
         "module/date" = {
           type = "internal/date";
-          interval = 5;
+          interval = 30;
           date = "%Y-%m-%d";
           time = "%H:%M";
+          label = "%date% %time%";
         };
         "module/battery" = {
           type = "internal/battery";
