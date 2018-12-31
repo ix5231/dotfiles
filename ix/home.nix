@@ -14,7 +14,7 @@
       font = "Source Han Code JP 10";
       backgroundColor = "#282828";
       foregroundColor = "#ebbdb2";
-      colorsExtra = builtins.readFile ./dots/termite_colors;
+      colorsExtra = builtins.readFile ./dots/template/termite_colors;
     };
     zsh = {
       enable = true;
@@ -83,7 +83,7 @@
     packageOverrides = with pkgs; {
       myNeovim = neovim.override {
         configure = {
-          customRC = builtins.readFile ./dots/init.vim;
+          customRC = builtins.readFile ./dots/nvim/init.vim;
           packages.myVimPackage = with pkgs.vimPlugins; {
             start = [];
             opt = [];
@@ -105,10 +105,10 @@
 
   xdg.configFile = {
     "bspwm/bspwmrc" = {
-      source = ./dots/bspwmrc;
+      source = ./dots/bspwm/bspwmrc;
       executable = true;
     };
-    "sxhkd/bspwm".source = ./dots/sxhkdrc;
+    "sxhkd/bspwm".source = ./dots/bspwm/sxhkdrc;
     "nixpkgs/config.nix".text = "{ allowUnfree = true; }";
   };
 }
