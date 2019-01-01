@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./hardware-specific-conf.nix ];
+  imports = [ ./hardware-specific-conf.nix
+              ./bspwm.nix];
 
   programs = {
     home-manager = {
@@ -74,7 +75,6 @@
 
   xsession = {
     enable = true;
-    windowManager.command = "bspwm";
     initExtra = "${./dots/battery_warn.sh} &";
   };
 
@@ -95,7 +95,7 @@
 
   home = {
     packages = with pkgs; [
-      myNeovim git bspwm sxhkd firefox libnotify fzf llpp
+      myNeovim git firefox libnotify fzf llpp
       ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
       wget texlive.combined.scheme-full shellcheck
     ];
@@ -104,11 +104,6 @@
   };
 
   xdg.configFile = {
-    "bspwm/bspwmrc" = {
-      source = ./dots/bspwm/bspwmrc;
-      executable = true;
-    };
-    "sxhkd/bspwm".source = ./dots/bspwm/sxhkdrc;
     "nixpkgs/config.nix".text = "{ allowUnfree = true; }";
   };
 }

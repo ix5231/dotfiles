@@ -59,6 +59,8 @@ in
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
+  services.openssh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ix = {
     isNormalUser = true;
