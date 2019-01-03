@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./hardware-specific-conf.nix ];
+  imports = [ ./hardware-specific-conf.nix
+              ./bspwm.nix];
 
   programs = {
     home-manager = {
@@ -14,7 +15,7 @@
       font = "Source Han Code JP 10";
       backgroundColor = "#282828";
       foregroundColor = "#ebbdb2";
-      colorsExtra = builtins.readFile ./dots/termite_colors;
+      colorsExtra = builtins.readFile ./dots/template/termite_colors;
     };
     zsh = {
       enable = true;
@@ -57,9 +58,10 @@
         };
         "module/date" = {
           type = "internal/date";
-          interval = 5;
+          interval = 30;
           date = "%Y-%m-%d";
           time = "%H:%M";
+          label = "%date% %time%";
         };
         "module/battery" = {
           type = "internal/battery";
@@ -73,7 +75,6 @@
 
   xsession = {
     enable = true;
-    windowManager.command = "bspwm";
     initExtra = "${./dots/battery_warn.sh} &";
   };
 
@@ -82,7 +83,7 @@
     packageOverrides = with pkgs; {
       myNeovim = neovim.override {
         configure = {
-          customRC = builtins.readFile ./dots/init.vim;
+          customRC = builtins.readFile ./dots/nvim/init.vim;
           packages.myVimPackage = with pkgs.vimPlugins; {
             start = [];
             opt = [];
@@ -94,7 +95,7 @@
 
   home = {
     packages = with pkgs; [
-      myNeovim git bspwm sxhkd firefox libnotify fzf llpp
+      myNeovim git firefox libnotify fzf llpp
       ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
       wget texlive.combined.scheme-full shellcheck
     ];
@@ -103,11 +104,6 @@
   };
 
   xdg.configFile = {
-    "bspwm/bspwmrc" = {
-      source = ./dots/bspwmrc;
-      executable = true;
-    };
-    "sxhkd/bspwm".source = ./dots/sxhkdrc;
     "nixpkgs/config.nix".text = "{ allowUnfree = true; }";
   };
 }

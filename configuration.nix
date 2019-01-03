@@ -41,7 +41,7 @@ in
   time.timeZone = "Asia/Tokyo";
   services.timesyncd.servers = [ "ntp.nict.jp" "ntp.jst.mfeed.ad.jp" "s2csntp.miz.nao.ac.jp" ];
 
-  environment.systemPackages = with pkgs; [ fcitx-engines.mozc numlockx ];
+  environment.systemPackages = with pkgs; [ fcitx-engines.mozc numlockx virtualbox ];
 
   # Enable sound.
   sound.enable = true;
@@ -55,9 +55,16 @@ in
     user = "ix";
   };
   services.xserver.displayManager.sessionCommands = "${pkgs.numlockx}/bin/numlockx on";
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
+
+  services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
+  services.openssh.permitRootLogin = "no";
+  services.openssh.authorizedKeysFiles = [ "/root/.ssh/authorized_keys" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ix = {
