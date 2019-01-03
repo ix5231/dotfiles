@@ -62,6 +62,9 @@ in
   services.xserver.libinput.enable = true;
 
   services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
+  services.openssh.permitRootLogin = "no";
+  services.openssh.authorizedKeysFiles = [ "/root/.ssh/authorized_keys" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ix = {
