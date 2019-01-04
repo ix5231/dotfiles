@@ -1,16 +1,22 @@
 #!/bin/sh
 
+BAT_DIR="/sys/class/power_supply"
+
+if [ -z "$(echo $BAT_DIR/BAT*)" ]; then
+    exit
+fi
+
 IFS="
 "
 while true; do
     max=0
     charging=false
-    for b in $(acpi -b); do
-        p=$(echo "$b" | grep -o -e "[0-9]*%" | grep -o -e "[0-9]*")
+    for b in "$BAT_DIR"/BAT*; do
+        p=$(cat "$b"/capacity)
         if [ "$p" -gt "$max" ]; then
             max=$p
         fi
-        if echo "$b" | grep -q "Charging" ; then
+        if grep -q "Charging" < "$b"/status; then
             charging=true
         fi
     done

@@ -32,11 +32,37 @@
   };
 
   services = {
-    dunst.enable = true;
-    compton = {
+    dunst = {
       enable = true;
-      #blur = true;
+      settings = {
+        global = {
+          padding = 7;
+          horizontal_padding = 7;
+          frame_width = 3;
+          geometry = "400x0-20+20";
+          font = "Source Han Code JP bold 10";
+        };
+
+        urgency_low  =  {
+          background = "#282828";
+          foreground = "#ebdbb2";
+          frame_color = "#a89984";
+        };
+
+        urgency_normal  =  {
+          background = "#282828";
+          foreground = "#ebdbb2";
+          frame_color = "#458588";
+        };
+
+        urgency_critical  =  {
+          background = "#282828";
+          foreground = "#fb4934";
+          frame_color = "#cc241d";
+        };
+      };
     };
+    compton.enable = true; 
     polybar = {
       enable = true;
       config = {
@@ -54,7 +80,7 @@
           foreground = "#fbf1c7";
           fixed-center = true;
           border-size = 4;
-          border-color = "#689D6A";
+          border-color = "#689d6a";
         };
         "module/date" = {
           type = "internal/date";
