@@ -29,6 +29,12 @@
       };
     };
     rofi.enable = true;
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        set -sa terminal-overrides ",xterm-termite:Tc"
+      '';
+    };
   };
 
   services = {
