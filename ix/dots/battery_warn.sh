@@ -2,7 +2,7 @@
 
 BAT_DIR="/sys/class/power_supply"
 
-if [ -z "$(echo $BAT_DIR/BAT*)" ]; then
+if [ -z "$(ls $BAT_DIR/BAT* 2> /dev/null)" ]; then
     exit
 fi
 
