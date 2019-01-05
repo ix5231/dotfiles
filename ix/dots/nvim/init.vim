@@ -34,7 +34,7 @@ Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
 Plug 'cohama/lexima.vim'
 Plug 'mattn/emmet-vim', { 'for': 'html' }
-Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-obsession'
 call plug#end()
 
 colorscheme gruvbox
@@ -90,7 +90,7 @@ command! -bang -nargs=* Rgc
 
 set clipboard+=unnamedplus
 
-let g:airline_section_z = airline#section#create(["L" . '%{line(".")}' . "C" . '%{col(".")}'])
+" let g:airline_section_z = airline#section#create(["L" . '%{line(".")}' . "C" . '%{col(".")}'])
 
 set hidden
 
