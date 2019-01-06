@@ -18,10 +18,10 @@ Plug 'wakatime/vim-wakatime'
 
 " Complete/Lint
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'for': ['rust', 'typescript'] ,
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+            \ 'for': ['rust', 'typescript'] ,
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
 Plug 'w0rp/ale', { 'for': ['sh', 'c', 'cpp', 'ruby', 'python', 'nix'] }
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
@@ -56,6 +56,33 @@ set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileformats=unix,dos,mac
 
+nnoremap <space> <nop>
+let mapleader="\<Space>"
+
+inoremap fd <ESC>
+tnoremap <ESC> <C-\><C-n>
+tnoremap fd <C-\><C-n>
+
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wH <C-w>H
+nnoremap <leader>wJ <C-w>J
+nnoremap <leader>wK <C-w>K
+nnoremap <leader>wL <C-w>L
+
+nnoremap <leader>wv :vs<CR>
+nnoremap <leader>ws :sp<CR>
+
+nnoremap <leader>bq :quit<CR>
+nnoremap <leader>bQ :quit!<CR>
+nnoremap <leader>bw :write<CR>
+nnoremap <leader>bs :wq<CR>
+
+nnoremap <leader>be G
+nnoremap <leader>bh gg
+
 augroup augrp
     au!
 
@@ -72,64 +99,58 @@ augroup augrp
 augroup END
 
 function! GetBufferList()
-  redir =>buflist
-  silent! ls!
-  redir END
-  return buflist
+    redir =>buflist
+    silent! ls!
+    redir END
+    return buflist
 endfunction
 
 function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
-      return
+    let buflist = GetBufferList()
+    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
+    endfor
+    if a:pfx == 'l' && len(getloclist(0)) == 0
+        echohl ErrorMsg
+        echo "Location List is Empty."
+        return
     endif
-  endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
-  let winnr = winnr()
-  exec(a:pfx.'open')
-  if winnr() != winnr
-    wincmd p
-  endif
+    let winnr = winnr()
+    exec(a:pfx.'open')
+    if winnr() != winnr
+        wincmd p
+    endif
 endfunction
 
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    unlet g:qfix_win
-  else
-    copen 10
-    let g:qfix_win = bufnr("$")
-  endif
+    if exists("g:qfix_win") && a:forced == 0
+        cclose
+        unlet g:qfix_win
+    else
+        copen 10
+        let g:qfix_win = bufnr("$")
+    endif
 endfunction
 
-"nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-"nmap <silent> Q :call ToggleList("Quickfix List", 'c')<CR>
 nmap <silent> Q :QFix<CR>
 
-inoremap fd <ESC>
-tnoremap <ESC> <C-\><C-n>
-tnoremap fd <C-\><C-n>
-
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --ignore-case --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --ignore-case --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 command! -bang -nargs=* Rgc
-  \ call fzf#vim#grep(
-  \   'rg --case-sensitive --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --case-sensitive --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 set clipboard+=unnamedplus
 
@@ -138,8 +159,8 @@ set clipboard+=unnamedplus
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ }
+            \ 'typescript': ['javascript-typescript-stdio'],
+            \ }
 if executable('rls')
     let g:LanguageClient_serverCommands['rust'] = ['rls']
 elseif executable('rustup')
@@ -166,3 +187,6 @@ inoremap <silent> <buffer> <expr> <tab> ncm2_ultisnips#expand_or("\<tab>", 'n')
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
+
+let g:neoterm_autoinsert=1
+nnoremap <silent> <leader>t :vertical rightbelow Ttoggle<CR>
