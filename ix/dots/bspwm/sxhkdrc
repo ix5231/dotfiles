@@ -4,10 +4,10 @@
 
 # terminal emulator
 alt + Return
-	termite -e "tmux"
+	termite
 
 alt + z
-	termite -e "tmux"
+	termite
 
 # program launcher
 alt + d

@@ -26,6 +26,8 @@
       shellAliases = {
         ns = "nix-shell --command zsh";
         sudo = "sudo -E";
+        tma = "tmux attach";
+        tmt = "tmux attach -t";
       };
     };
     rofi.enable = true;
@@ -121,7 +123,6 @@
       script = "polybar bottom &";
     };
   };
-
   xsession = {
     enable = true;
     initExtra = "${./dots/battery_warn.sh} &";
