@@ -35,6 +35,7 @@ Plug 'morhetz/gruvbox'
 Plug 'cohama/lexima.vim'
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'tpope/vim-obsession'
+Plug 'kassio/neoterm'
 call plug#end()
 
 colorscheme gruvbox
