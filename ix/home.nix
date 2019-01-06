@@ -47,6 +47,11 @@
         }
       ];
     };
+    git = {
+      enable = true;
+      userEmail = "ix5231if@gmail.com";
+      userName = "Mitsuki Watanabe";
+    };
   };
 
   services = {
@@ -139,8 +144,8 @@
 
   home = {
     packages = with pkgs; [
-      myNeovim git firefox libnotify fzf llpp
-      ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
+      myNeovim firefox libnotify fzf llpp xorg.xbacklight
+      ipafont source-han-code-jp ponymix spotify musescore
       wget texlive.combined.scheme-full shellcheck
     ];
     sessionVariables.EDITOR = "nvim";
