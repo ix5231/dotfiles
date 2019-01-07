@@ -26,9 +26,34 @@
       shellAliases = {
         ns = "nix-shell --command zsh";
         sudo = "sudo -E";
+        tma = "tmux attach";
+        tmt = "tmux attach -t";
       };
     };
     rofi.enable = true;
+    tmux = {
+      enable = true;
+      extraConfig = builtins.readFile ./dots/tmux.conf;
+      plugins = with pkgs; [
+        tmuxPlugins.cpu
+        {
+          plugin = tmuxPlugins.resurrect;
+          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        }
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '60' # minutes
+          '';
+        }
+      ];
+    };
+    git = {
+      enable = true;
+      userEmail = "ix5231if@gmail.com";
+      userName = "Mitsuki Watanabe";
+    };
   };
 
   services = {
@@ -98,7 +123,6 @@
       script = "polybar bottom &";
     };
   };
-
   xsession = {
     enable = true;
     initExtra = "${./dots/battery_warn.sh} &";
@@ -121,8 +145,8 @@
 
   home = {
     packages = with pkgs; [
-      myNeovim git firefox libnotify fzf llpp
-      ipafont source-han-code-jp xorg.xbacklight ponymix spotify musescore
+      myNeovim firefox libnotify fzf llpp xorg.xbacklight
+      ipafont source-han-code-jp ponymix spotify musescore
       wget texlive.combined.scheme-full shellcheck
     ];
     sessionVariables.EDITOR = "nvim";
