@@ -35,6 +35,7 @@ Plug 'morhetz/gruvbox'
 Plug 'cohama/lexima.vim'
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'vim-airline/vim-airline'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 colorscheme gruvbox
