@@ -29,6 +29,7 @@
         tma = "tmux attach";
         tmt = "tmux attach -t";
       };
+      initExtra = "eval $(thefuck --alias)";
     };
     rofi.enable = true;
     tmux = {
@@ -147,7 +148,7 @@
     packages = with pkgs; [
       myNeovim firefox libnotify fzf llpp xorg.xbacklight
       ipafont source-han-code-jp ponymix spotify musescore
-      wget texlive.combined.scheme-full shellcheck
+      wget texlive.combined.scheme-full shellcheck thefuck
     ];
     sessionVariables.EDITOR = "nvim";
     file.".latexmkrc".source = ./dots/latexmkrc;
