@@ -20,10 +20,12 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader
-  boot.loader.efi.canTouchEfiVariables = isUefi;
-  boot.loader.systemd-boot.enable = isUefi;
-  boot.loader.grub.enable = !isUefi;
-  boot.loader.grub.useOSProber = !isUefi;
+  boot.loader = {
+    efi.canTouchEfiVariables = isUefi;
+    systemd-boot.enable = isUefi;
+    grub.enable = !isUefi;
+    grub.useOSProber = !isUefi;
+  };
 
   networking.networkmanager.enable = true;
 
@@ -39,7 +41,27 @@ in
 
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
-  services.timesyncd.servers = [ "ntp.nict.jp" "ntp.jst.mfeed.ad.jp" "s2csntp.miz.nao.ac.jp" ];
+  services = {
+    timesyncd.servers = [ "ntp.nict.jp" "ntp.jst.mfeed.ad.jp" "s2csntp.miz.nao.ac.jp" ];
+    xserver = {
+      enable = true;
+      layout = "us";
+      displayManager = {
+        auto = {
+          enable = true;
+          user = "ix";
+        };
+        sessionCommands = "${pkgs.numlockx}/bin/numlockx on";
+      };
+      libinput.enable = true;
+    };
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      permitRootLogin = "no";
+      authorizedKeysFiles = [ "/root/.ssh/authorized_keys" ];
+    };
+  };
 
   environment.systemPackages = with pkgs; [ fcitx-engines.mozc numlockx virtualbox ];
 
@@ -48,23 +70,10 @@ in
   hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.displayManager.auto = {
+  virtualisation.virtualbox.host = {
     enable = true;
-    user = "ix";
+    enableExtensionPack = true;
   };
-  services.xserver.displayManager.sessionCommands = "${pkgs.numlockx}/bin/numlockx on";
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
-
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
-  services.openssh.permitRootLogin = "no";
-  services.openssh.authorizedKeysFiles = [ "/root/.ssh/authorized_keys" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ix = {
