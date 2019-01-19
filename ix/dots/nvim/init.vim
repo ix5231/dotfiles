@@ -31,6 +31,7 @@ Plug 'ncm2/ncm2'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'rakr/vim-one'
 Plug 'morhetz/gruvbox'
 Plug 'cohama/lexima.vim'
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -39,9 +40,10 @@ Plug 'tpope/vim-obsession'
 Plug 'kassio/neoterm'
 call plug#end()
 
-colorscheme gruvbox
+"#colorscheme gruvbox
+colorscheme one
 
-set background=dark
+set background=light
 set termguicolors
 set number
 set cursorline
