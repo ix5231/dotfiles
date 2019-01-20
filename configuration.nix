@@ -80,7 +80,7 @@ in
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
   home-manager.users.ix = import ./ix/home.nix;
 

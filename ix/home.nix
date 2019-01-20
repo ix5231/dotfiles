@@ -17,19 +17,14 @@
       foregroundColor = "#ebbdb2";
       colorsExtra = builtins.readFile ./dots/template/termite_colors;
     };
-    zsh = {
+    fish = {
       enable = true;
-      oh-my-zsh = {
-        enable = true;
-        theme = "arrow";
-      };
       shellAliases = {
-        ns = "nix-shell --command zsh";
         sudo = "sudo -E";
         tma = "tmux attach";
         tmt = "tmux attach -t";
       };
-      initExtra = "eval $(thefuck --alias)";
+      interactiveShellInit = "thefuck --alias | source";
     };
     rofi.enable = true;
     tmux = {
