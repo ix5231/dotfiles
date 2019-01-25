@@ -18,6 +18,9 @@ in
     ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (import ./pkgs/overlays.nix)
+  ];
 
   # Bootloader
   boot.loader = {
@@ -63,7 +66,7 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [ fcitx-engines.mozc numlockx virtualbox ];
+  environment.systemPackages = with pkgs; [ fcitx-engines.mozc numlockx virtualbox mine.megasync ];
 
   # Enable sound.
   sound.enable = true;
