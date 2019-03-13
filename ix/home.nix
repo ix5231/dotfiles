@@ -1,5 +1,10 @@
 { pkgs, ... }:
 
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 {
   imports = [ ./hardware-specific-conf.nix
               ./bspwm.nix];
@@ -136,14 +141,16 @@
           };
         };
       };
+      unstable = import unstableTarball {};
     };
   };
 
   home = {
     packages = with pkgs; [
       myNeovim firefox libnotify fzf llpp xorg.xbacklight
-      ipafont source-han-code-jp ponymix spotify musescore
+      ipafont source-han-code-jp ponymix spotify
       wget texlive.combined.scheme-full shellcheck thefuck
+      unstable.musescore
     ];
     sessionVariables.EDITOR = "nvim";
     file.".latexmkrc".source = ./dots/latexmkrc;
