@@ -1,0 +1,11 @@
+set background=light
+colorscheme gruvbox
+
+set guifont=MS_Gothic:h12
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
