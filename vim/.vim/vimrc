@@ -36,8 +36,11 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 if ! has('nvim')
   Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/asyncomplete-buffer.vim'
   Plug 'prabirshrestha/asyncomplete-file.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'yami-beta/asyncomplete-omni.vim'
 endif
 
@@ -49,6 +52,7 @@ if ! has('win32')
 endif
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-obsession'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 if !has('win32')
@@ -58,6 +62,13 @@ endif
 
 if !has('nvim')
     set termguicolors
+
+    " Enable escape sequence on :terminal
+    tmap <expr> <Esc>]b SendToTerm("\<Esc>]b")
+    func SendToTerm(what)
+      call term_sendkeys('', a:what)
+      return ''
+    endfunc
 endif
 
 set number
@@ -121,6 +132,14 @@ augroup augrp
     au filetype eruby set tabstop=2
     au filetype eruby set shiftwidth=2
     au filetype eruby set softtabstop=2
+
+    " Cpp indent
+    au filetype cpp set tabstop=2
+    au filetype cpp set shiftwidth=2
+    au filetype cpp set softtabstop=2
+    au filetype c set tabstop=2
+    au filetype c set shiftwidth=2
+    au filetype c set softtabstop=2
 
     " NASM
     au BufRead,BufNewFile *.nasm set filetype=nasm
@@ -193,7 +212,15 @@ let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
-if ! has('win32')
-  let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('$HOME/.vim/snippets_custom.json')), "\n"))
-  
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
 endif
+
+"if ! has('win32')
+"  let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('$HOME/.vim/snippets_custom.json')), "\n"))
+"  
+"endif
