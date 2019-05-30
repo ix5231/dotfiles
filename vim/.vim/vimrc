@@ -1,7 +1,7 @@
 if has('win32')
     if !has('nvim')
-        let s:vimplugpath="$HOME/vimfiles/autoload/plug.vim"
-        let s:vimplugdist="$HOME/vimfiles/plugged"
+        let s:vimplugpath=expand("$HOME/vimfiles/autoload/plug.vim")
+        let s:vimplugdist=expand("$HOME/vimfiles/plugged")
     endif
 else
     if has('nvim')
