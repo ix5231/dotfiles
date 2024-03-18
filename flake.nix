@@ -25,10 +25,10 @@
       };
     };
     homeConfigurations = {
-      dev = home-manager.lib.homeManagerConfiguration {
+      lima = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
-          ./home.nix
+          ./profile/lima/home.nix
         ];
       };
     };
