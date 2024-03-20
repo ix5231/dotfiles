@@ -22,6 +22,6 @@
     fzf.enable = true;
   };
   mymodules = {
-    editorconfig = true;
+    editorconfig.enable = true;
   };
 }
