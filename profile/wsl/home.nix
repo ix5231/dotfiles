@@ -6,7 +6,7 @@
   home = {
     packages = [ pkgs.nixd ];
     shellAliases = {
-      update = "sudo nixos-rebuild switch --flake #wsl";
+      update = "sudo nixos-rebuild switch --flake /home/asakaze/nixos#wsl";
     };
   };
 }

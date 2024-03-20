@@ -17,6 +17,7 @@
     };
     fish.enable = true;
     git.enable = true;
+    ripgrep.enable = true;
   };
   xdg = {
     enable = true;
