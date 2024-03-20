@@ -1,0 +1,7 @@
+[language-server.nixd]
+command = "nixd"
+config = { provideFormatter = true }
+
+[[language]]
+name = "nix"
+language-servers = [ "nixd" ]

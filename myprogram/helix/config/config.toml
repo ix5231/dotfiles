@@ -1,0 +1,4 @@
+theme = "gruvbox"
+
+[keys.insert]
+f = { d = "normal_mode" }
