@@ -1,4 +1,6 @@
-{ ... }:
 {
-  imports = [ ./helix ];
+  imports = [
+    ./helix
+    ./neovim
+  ];
 }
