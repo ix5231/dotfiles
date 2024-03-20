@@ -12,14 +12,15 @@
     nixosConfigurations = {
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { wsl = inputs.wsl; };
+        specialArgs = { wsl = inputs.wsl; profile = ./profile/wsl/nixos.nix; };
         modules = [
-          ./profile/wsl/nixos.nix
+          ./nixos.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.asakaze = import ./profile/wsl/home.nix;
+            home-manager.users.asakaze = import ./home.nix;
+            home-manager.extraSpecialArgs = { profile = ./profile/wsl/home.nix; };
           }
         ];
       };
@@ -28,8 +29,9 @@
       lima = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
-          ./profile/lima/home.nix
+          ./home.nix
         ];
+        home-manager.extraSpecialArgs = { profile = ./profile/lima/home.nix; };
       };
     };
   };

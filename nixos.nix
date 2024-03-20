@@ -1,6 +1,8 @@
-{ config, lib, pkgs, wsl, ... }:
+{ pkgs, profile, ... }:
 
 {
+  imports = [ profile ];
+
   programs.fish.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?

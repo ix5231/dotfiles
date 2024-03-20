@@ -3,7 +3,6 @@
 {
   imports = [
     wsl.nixosModules.default
-    ../../nixos.nix
   ];
 
   # FIXME: nixdに必要、不要になったら削除

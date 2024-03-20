@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../../home.nix ];
-
   home = {
     packages = [ pkgs.nixd ];
     shellAliases = {
