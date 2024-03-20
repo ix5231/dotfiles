@@ -17,6 +17,6 @@
     fish.enable = true;
     git.enable = true;
     ripgrep.enable = true;
-#    helix.enable = true;
+    neovim.enable = true;
   };
 }
