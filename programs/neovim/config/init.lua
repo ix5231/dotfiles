@@ -24,5 +24,6 @@ end)
 
 vim.cmd('colorscheme gruvbox')
 vim.o.termguicolors = true
+vim.o.number = true
 
 vim.keymap.set('i', 'fd', '<ESC>')
