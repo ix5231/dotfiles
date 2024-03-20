@@ -2,7 +2,7 @@
 
 with lib;
 {
-  config = mkIf programs.helix.enable {
+  config = mkIf config.programs.helix.enable {
     programs = {
       helix = {
         settings = trivial.pipe ./config/config.toml [builtins.readFile builtins.fromTOML];
@@ -15,7 +15,7 @@ with lib;
       configFile = {
         "helix/runtime" = {
           enable = true;
-          source = ./config/helix/runtime;
+          source = ./config/runtime;
           recursive = true;
         };
       };

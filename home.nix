@@ -3,7 +3,7 @@
 {
   imports = [
     profile
-    #./programs
+    ./programs
   ];
 
   home = {
@@ -17,6 +17,6 @@
     fish.enable = true;
     git.enable = true;
     ripgrep.enable = true;
-    helix.enable = true;
+#    helix.enable = true;
   };
 }
