@@ -19,7 +19,10 @@
     git.enable = true;
     ripgrep.enable = true;
     neovim.enable = true;
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
   mymodules = {
     editorconfig.enable = true;
