@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./editorconfig ];
+  imports = [ ./editorconfig ./meta ];
 }

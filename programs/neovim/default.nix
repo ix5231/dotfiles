@@ -1,17 +1,19 @@
 { lib, config, ... }:
 
 with lib;
-{
-  config = mkIf config.programs.neovim.enable {
-    xdg = {
-      enable = true;
-      configFile = {
-        "nvim" = {
-          enable = true;
-          source = ./config;
-          recursive = true;
+let
+  root = config.mymodules.meta.configRoot;
+  link = config.lib.file.mkOutOfStoreSymlink;
+in {
+    config = mkIf config.programs.neovim.enable {
+      xdg = {
+        enable = true;
+        configFile = {
+          "nvim/init.lua" = {
+            enable = true;
+            source = link "${root}/variable/nvim/init.lua";
+          };
         };
       };
     };
-  };
-}
+  }

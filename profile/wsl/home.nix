@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  mymodules.meta.configRoot = "${config.home.homeDirectory}/nixos";
   home = {
     packages = [ pkgs.nixd ];
     shellAliases = {
