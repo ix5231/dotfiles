@@ -2,7 +2,7 @@
 
 with lib;
 let
-  root = config.mymodules.meta.configRoot;
+  root = config.mymodules.meta.dotfiles;
   link = config.lib.file.mkOutOfStoreSymlink;
 in {
     config = mkIf config.programs.neovim.enable {
@@ -11,7 +11,7 @@ in {
         configFile = {
           "nvim/init.lua" = {
             enable = true;
-            source = link "${root}/variable/nvim/init.lua";
+            source = link "${root}/nvim/init.lua";
           };
         };
       };

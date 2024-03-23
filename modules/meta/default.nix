@@ -10,5 +10,10 @@ in {
         type = types.str;
         default = "${config.home.homeDirectory}/nixos";
       };
+
+      dotfiles = mkOption {
+        type = types.str;
+        default = "${config.mymodules.meta.configRoot}/dotfiles";
+      };
     };
   }
