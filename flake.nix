@@ -26,12 +26,20 @@
       };
     };
     homeConfigurations = {
-      lima = home-manager.lib.homeManagerConfiguration {
+      termux = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home.nix
         ];
-        home-manager.extraSpecialArgs = { profile = ./profile/lima/home.nix; };
+        extraSpecialArgs = { profile = ./profile/termux/home.nix; };
+      };
+
+      lima = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        modules = [
+          ./home.nix
+        ];
+        extraSpecialArgs = { profile = ./profile/lima/home.nix; };
       };
     };
   };
