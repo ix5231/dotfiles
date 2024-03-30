@@ -12,7 +12,30 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'morhetz/gruvbox',
+  'ellisonleao/gruvbox.nvim',
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  },
+  {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require'lspconfig'.gdscript.setup{}
+    end
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        highlight = {
+          enable = true,
+        },
+      }
+    end
+  }
 })
 
 vim.cmd('colorscheme gruvbox')
