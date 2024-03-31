@@ -16,6 +16,7 @@
   programs = {
     home-manager.enable = true;
     fish.enable = true;
+    zsh.enable = true;
     git.enable = true;
     ripgrep.enable = true;
     neovim.enable = true;

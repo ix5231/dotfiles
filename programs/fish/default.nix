@@ -3,8 +3,8 @@
 with lib;
 {
   config = mkIf config.programs.fish.enable {
-    fish = {
-      interactiveShellInit = builtin.readFile ./interactiveInit
-    }
+    programs.fish = {
+      interactiveShellInit = builtins.readFile ./interactiveInit.fish;
+    };
   };
 }

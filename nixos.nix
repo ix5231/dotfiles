@@ -3,7 +3,7 @@
 {
   imports = [ profile ];
 
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
 
   system.stateVersion = "23.11";
 
@@ -12,7 +12,7 @@
     home  = "/home/asakaze";
     extraGroups  = [ "wheel" ];
     hashedPassword = "$y$j9T$IxVv98/6EjhtFMQhcvBvi1$uIXySEoZDCVjBSFqxUH3aWzqum6cV6Ndmq./f3eycb/";
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
