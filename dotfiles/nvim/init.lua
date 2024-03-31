@@ -35,12 +35,25 @@ require('lazy').setup({
         },
       }
     end
-  }
+  },
+  'junegunn/fzf',
+  {
+    'junegunn/fzf.vim',
+    config = function()
+      vim.keymap.set('n', '<C-P>', function()
+        vim.cmd('FZF')
+      end)
+    end
+  },
 })
 
 vim.cmd('colorscheme gruvbox')
 vim.o.termguicolors = true
 vim.o.number = true
 vim.o.cursorline = true
+if vim.fn.has('win32') then
+  vim.opt.shell = 'pwsh.exe'
+end
+
 
 vim.keymap.set('i', 'fd', '<ESC>')
