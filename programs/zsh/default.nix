@@ -16,6 +16,11 @@ with lib;
           src = ./p10k-config;
           file = "p10k.zsh";
         }
+        {
+          name = "escape-bind";
+          src = ./escape-bind;
+          file = "escape-bind.zsh";
+        }
       ];
     };
   };
