@@ -1,4 +1,17 @@
-New-Item -ItemType Directory -Force -Path $env:localappdata/nvim
-New-Item -ItemType SymbolicLink -Path $env:localappdata/nvim/init.lua -Value $PSScriptRoot/dotfiles/nvim/init.lua
+function Link-Dot {
+  param ([string]$from, [string]$to)
 
-New-Item -ItemType SymbolicLink -Path $env:userprofile/.editorconfig -Value $PSScriptRoot/dotfiles/editorconfig
+  if (Test-Path $to -PathType Leaf) {
+    Write-Output "ファイルが存在するためスキップ: $to"
+    return
+  }
+
+  $dir = Sprit-Path -Parent $from
+
+  New-Item -ItemType Directory -ErrorAction SilentlyContinue -Path $dir
+  New-Item -ItemType SymbolicLink -Path $from -Value $to
+}
+
+Link-Dot $env:localappdata/nvim/init.lua $PSScriptRoot/dotfiles/nvim/init.lua
+
+Link-Dot $env:userprofile/.editorconfig $PSScriptRoot/dotfiles/editorconfig
