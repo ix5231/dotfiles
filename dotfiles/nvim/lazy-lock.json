@@ -1,0 +1,13 @@
+{
+  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
+  "cd-project.nvim": { "branch": "main", "commit": "a1421a581ed2f407583372a0f0cb418ded5b2f05" },
+  "fzf": { "branch": "master", "commit": "b29e2ee2d16bce269c4675a2030e7e550e13fb5c" },
+  "fzf.vim": { "branch": "master", "commit": "ddc14a6a5471147e2a38e6b32a7268282f669b0a" },
+  "gruvbox.nvim": { "branch": "main", "commit": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437" },
+  "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
+  "mini.nvim": { "branch": "main", "commit": "43ec25063430196d36f5fff5758c9101775f3d57" },
+  "neovim-gui-shim": { "branch": "master", "commit": "4d10bf3f68b9c0903bd1d9e456571d1d2ec16fde" },
+  "nvim-lspconfig": { "branch": "master", "commit": "41ceb6bba3a40128b7841f5b7f5a9dae7201e823" },
+  "nvim-treesitter": { "branch": "main", "commit": "c6dd314086f7b471bf6c9110092a94ce1c06d220" },
+  "vlime": { "branch": "master", "commit": "e276e9a6f37d2699a3caa63be19314f5a19a1481" }
+}

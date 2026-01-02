@@ -12,7 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'ellisonleao/gruvbox.nvim',
+  {
+    'ellisonleao/gruvbox.nvim',
+    config = function()
+      require("gruvbox").setup({ contrast = "soft" })
+    end
+  },
   {
     'numToStr/Comment.nvim',
     config = function()
@@ -22,14 +27,14 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     config = function()
-      require'lspconfig'.gdscript.setup{}
+      vim.lsp.enable('gdscript')
     end
   },
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
-      require'nvim-treesitter.configs'.setup {
+      require'nvim-treesitter'.setup {
         highlight = {
           enable = true,
         },
