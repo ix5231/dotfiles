@@ -17,3 +17,5 @@ SAVEHIST=10000
 HISTFILE=$HOME/.zsh_history
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY 
+
+alias g=git
