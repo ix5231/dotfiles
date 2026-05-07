@@ -1,1 +1,2 @@
 marlonrichert/zsh-autocomplete
+olets/zsh-abbr

@@ -97,10 +97,16 @@ vim.cmd('colorscheme gruvbox')
 vim.o.termguicolors = true
 vim.o.number = true
 vim.o.cursorline = true
-if vim.fn.has('win32') then
+
+if vim.fn.has('win32') == 1 then
   vim.opt.shell = 'pwsh.exe'
   vim.env.MYINIT = '$LOCALAPPDATA/nvim/init.lua'
 end
+
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
 
 vim.keymap.set('i', 'fd', '<ESC>')
 
